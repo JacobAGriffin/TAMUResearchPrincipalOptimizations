@@ -1,5 +1,5 @@
-#ifndef CATEfficiency_h
-#define CATEfficiency_h
+#ifndef principalIntegral_h
+#define principalIntegral_h
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -12,7 +12,7 @@
 #include "vector"
 #include "vector"
 
-class CATEfficiency {
+class principalIntegral {
 public :
    TTree          *fChain;   //!pointer to the analyzed TTree or TChain
    Int_t           fCurrent; //!current Tree number in a TChain
@@ -145,27 +145,26 @@ public :
    TBranch        *b_AMTTTracks_stubRefs;   //!
    TBranch        *b_AMTTTracks_principals;   //!
 
-   CATEfficiency(TTree *tree=0);
-   virtual ~CATEfficiency();
+   principalIntegral(TTree *tree=0);
+   virtual ~principalIntegral();
    virtual Int_t    Cut();
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     loop(int in1, int in2, bool highPt);
-   virtual void     point(vector<float> cuts, bool highPt);
+   virtual void     loop(bool highPt);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };
 
 #endif
 
-#ifdef CATEfficiency_cxx
-CATEfficiency::CATEfficiency(TTree *tree) : fChain(0) 
+#ifdef principalIntegral_cxx
+principalIntegral::principalIntegral(TTree *tree) : fChain(0) 
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
-//TString file = "/fdata/scratch/rathjd/JacobTransfer/NewMergedBanks03082016_MuonPU140_nz8_ACB-PDDS3_NoDR_NoClones_fixedPtEstimate.root";
-TString file = "/fdata/scratch/rathjd/JacobTransfer/OldSingleElectron_ACB-PDDS3_NoDR.root";
+TString file = "/fdata/scratch/rathjd/JacobTransfer/NewMergedBanks03082016_MuonPU140_nz8_ACB-PDDS3_NoDR_NoClones_fixedPtEstimate.root";
+//TString file = "/fdata/scratch/rathjd/JacobTransfer/OldSingleElectron_ACB-PDDS3_NoDR.root";
 //TString file = "/home/jacob.a.griffin/RicardoCurve_merged_SCB-PDDS3_NoCut_NoDR.root";
 //TString file = "/home/jacob.a.griffin/Tracks_SingleMuonPU140_OverlapCleaned_1miss_newBank_PCBv2_LTF_NoMaxChi2.root";
 //TString file = "/home/jacob.a.griffin/Tracks_SingleMuonNoPU_OverlapCleaned_1miss_PCBv2_LTF_fullPatterns_NoMaxChi2.root";
@@ -187,19 +186,19 @@ TString file = "/fdata/scratch/rathjd/JacobTransfer/OldSingleElectron_ACB-PDDS3_
    Init(tree);
 }
 
-CATEfficiency::~CATEfficiency()
+principalIntegral::~principalIntegral()
 {
    if (!fChain) return;
    delete fChain->GetCurrentFile();
 }
 
-Int_t CATEfficiency::GetEntry(Long64_t entry)
+Int_t principalIntegral::GetEntry(Long64_t entry)
 {
 // Read contents of entry.
    if (!fChain) return 0;
    return fChain->GetEntry(entry);
 }
-Long64_t CATEfficiency::LoadTree(Long64_t entry)
+Long64_t principalIntegral::LoadTree(Long64_t entry)
 {
 // Set the environment to read one entry
    if (!fChain) return -5;
@@ -212,7 +211,7 @@ Long64_t CATEfficiency::LoadTree(Long64_t entry)
    return centry;
 }
 
-void CATEfficiency::Init(TTree *tree)
+void principalIntegral::Init(TTree *tree)
 {
    // The Init() function is called when the selector needs to initialize
    // a new tree or chain. Typically here the branch addresses and branch
@@ -356,7 +355,7 @@ void CATEfficiency::Init(TTree *tree)
    Notify();
 }
 
-Bool_t CATEfficiency::Notify()
+Bool_t principalIntegral::Notify()
 {
    // The Notify() function is called when a new file is opened. This
    // can be either for a new TTree in a TChain or when when a new TTree
@@ -367,17 +366,17 @@ Bool_t CATEfficiency::Notify()
    return kTRUE;
 }
 
-void CATEfficiency::Show(Long64_t entry) {
+void principalIntegral::Show(Long64_t entry) {
 // Print contents of entry.
 // If entry is not specified, print current entry
    if (!fChain)
 	return;
    fChain->Show(entry);
 }
-Int_t CATEfficiency::Cut() {
+Int_t principalIntegral::Cut() {
 // This function may be called from loop.
 // returns  1 if entry is accepted.
 // returns -1 otherwise.
    return 1;
 }
-#endif // #ifdef CATEfficiency_cxx
+#endif // #ifdef principalIntegral_cxx

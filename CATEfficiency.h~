@@ -164,8 +164,8 @@ CATEfficiency::CATEfficiency(TTree *tree) : fChain(0)
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
-//TString file = "/fdata/scratch/rathjd/JacobTransfer/NewMergedBanks03082016_MuonPU140_nz8_ACB-PDDS3_NoDR_NoClones_fixedPtEstimate.root";
-TString file = "/fdata/scratch/rathjd/JacobTransfer/OldSingleElectron_ACB-PDDS3_NoDR.root";
+TString file = "/fdata/scratch/rathjd/JacobTransfer/NewMergedBanks03082016_MuonPU140_nz8_ACB-PDDS3_NoDR_NoClones_fixedPtEstimate.root";
+//TString file = "/fdata/scratch/rathjd/JacobTransfer/OldSingleElectron_ACB-PDDS3_NoDR.root";
 //TString file = "/home/jacob.a.griffin/RicardoCurve_merged_SCB-PDDS3_NoCut_NoDR.root";
 //TString file = "/home/jacob.a.griffin/Tracks_SingleMuonPU140_OverlapCleaned_1miss_newBank_PCBv2_LTF_NoMaxChi2.root";
 //TString file = "/home/jacob.a.griffin/Tracks_SingleMuonNoPU_OverlapCleaned_1miss_PCBv2_LTF_fullPatterns_NoMaxChi2.root";

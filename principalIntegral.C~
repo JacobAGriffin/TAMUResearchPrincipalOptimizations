@@ -222,7 +222,7 @@ void principalIntegral::loop(bool highPt)
 		for(int j=h1_Principals_Good[i]->GetNbinsX(); j!=-1; --j) {
 			x[j]=h1_Principals_Good[i]->Integral(0,j)/gdiv;
 			y[j]=h1_Principals_Bad[i]->Integral(0,j)/bdiv;
-			if (x[j] >= 1) {
+			if (x[j] > 0.99 && x[j] < .9999) {
 				std::cout<<i<<" : "<<h1_Principals_Good[i]->GetBinLowEdge(j)<<" : "<<y[j]<<" : "<<x[j]<<std::endl;
 			}
 		}

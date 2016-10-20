@@ -258,15 +258,17 @@ void CATEfficiency::loop(int in1, int in2, bool highPt) {
 				for (float d  : array4) {
 					for (float e  : array5) {
 						for (float f  : array6) {
-							std::cout << "HERE " << count << std::endl;
+							std::cout << "HERE " << (count >= in1 && count < in2) << std::endl;
 							if (count >= in1 && count < in2) {
 								//vector<pair< vector<int>, vector<float> > > goodTracks, badTracks;
 								int goodCut = 0, badCut = 0, goodTracks = 0, badTracks = 0;
 
 								//vector<float> cuts = {-1,33,22,12,-1,-1,-1,3,3,3,-1,-1};
+								std::cout<< "Starting " << count;
 								vector<float> cuts = {-1,a,b,c,-1,-1,-1,d,e,f,-1,-1};
 
 								point(cuts, highPt);
+								std::cout<< " : Ending " << count << std::endl;
 								
 							} else if (count >= in2)
 								break;
